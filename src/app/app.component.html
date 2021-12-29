@@ -1,0 +1,64 @@
+<main class="container">
+  <div class="">
+    <h1 class="mt-5 mb-4">Labour cost report</h1>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">
+            <span id="name" (click)="sortTableClick($event)">Payroll<br>Provider</span>
+            <i *ngIf="tableSort.column === 'name'" [ngClass]="(tableSort.isAscending) ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi"></i>
+          </th>
+          <th scope="col">
+            <span id="workerCount" (click)="sortTableClick($event)">Worker</span>
+            <i *ngIf="tableSort.column === 'workerCount'" [ngClass]="(tableSort.isAscending) ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi"></i>
+          </th>
+          <th scope="col">
+            <span id="complianceScore" (click)="sortTableClick($event)">Compliance<br>Score</span>
+            <i *ngIf="tableSort.column === 'complianceScore'" [ngClass]="(tableSort.isAscending) ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi"></i>
+          </th>
+          <th scope="col" class="text-right">
+            <span id="grossPayTotal" (click)="sortTableClick($event)">Gross<br>Pay (&pound;)</span>
+            <i *ngIf="tableSort.column === 'grossPayTotal'" [ngClass]="(tableSort.isAscending) ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi"></i>
+          </th>
+          <th scope="col" class="text-right">
+            <span id="payrollAdminTotal" (click)="sortTableClick($event)">Payroll<br>Admin (&pound;)</span>
+            <i *ngIf="tableSort.column === 'payrollAdminTotal'" [ngClass]="(tableSort.isAscending) ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi"></i>
+          </th>
+          <th scope="col" class="text-right right-padding">
+            <span id="labourCostTotal" (click)="sortTableClick($event)">Labour<br>Cost (&pound;)</span>
+            <i *ngIf="tableSort.column === 'labourCostTotal'" [ngClass]="(tableSort.isAscending) ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi"></i>
+          </th>
+          <th scope="col">
+            <span id="workforce" (click)="sortTableClick($event)">Workforce</span>
+            <i *ngIf="tableSort.column === 'workforce'" [ngClass]="(tableSort.isAscending) ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi"></i>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of tableData">
+          <td [ngClass]="{'text-darkest' : tableSort.column === 'name'}">{{ row.name }}</td>
+          <td class="text-large" [ngClass]="{'text-darkest' : tableSort.column === 'workerCount'}">{{ row.workerCount }}</td>
+          <td class="right-border" [ngClass]="{'text-darkest' : tableSort.column === 'complianceScore'}">{{ row.complianceScore | percent:'1.0-0' }}</td>
+          <td class="text-large text-darker text-right" [ngClass]="{'text-darkest' : tableSort.column === 'grossPayTotal'}">{{ row.grossPayTotal | transformToPounds }}</td>
+          <td class="text-right" [ngClass]="{'text-darkest' : tableSort.column === 'payrollAdminTotal'}">{{ row.payrollAdminTotal | nullResult }}</td>
+          <td class="text-large right-border text-right right-padding" [ngClass]="{'text-darkest' : tableSort.column === 'labourCostTotal'}">{{ row.labourCostTotal | transformToPounds }}</td>
+          <td [ngClass]="{'text-darkest' : tableSort.column === 'workforce'}">{{ row.workforce | percent:'1.0-1' }}</td>
+        </tr>
+        <tr class="table-foot-spacer">
+          <td colspan="7">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="text-right text-darker">TOTAL</td>
+          <td class="text-large text-darker">{{ tableSummary.workerCount }}</td>
+          <td class="right-border text-darker">{{ tableSummary.complianceScore | percent:'1.0-0' }}</td>
+          <td class="text-large text-darker text-right">{{ tableSummary.grossPayTotal | transformToPounds }}</td>
+          <td class="text-right text-darker">{{ tableSummary.payrollAdminTotal | nullResult }}</td>
+          <td class="text-large right-border text-right text-darker right-padding">{{ tableSummary.labourCostTotal | transformToPounds }}</td>
+          <td class="text-darker">{{ tableSummary.workforce || 0 | percent:'1.0-1' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</main>
