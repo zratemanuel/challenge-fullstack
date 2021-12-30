@@ -29,4 +29,7 @@ This should expose an endpoint on the following URL: http://localhost:6502/appli
 
 Run `npm install` to install packages and `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Public URL
+https://challenge-59e06.web.app/
+
 
