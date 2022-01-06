@@ -32,4 +32,8 @@ Run `npm install` to install packages and `ng serve` for a dev server. Navigate 
 ## Public URL
 https://challenge-59e06.web.app/
 
+## Deployment useful documentation
+https://medium.com/geekculture/how-to-easily-deploy-your-first-angular-app-on-heroku-65dd546c8181
+
+
 
